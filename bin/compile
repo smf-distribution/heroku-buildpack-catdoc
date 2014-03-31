@@ -27,4 +27,11 @@ cd $FILE_NAME
 ./configure --prefix=$BUILD_DIR
 make
 make install
+
+echo "-----> Adding catdoc config"
+# per: http://linux.die.net/man/1/catdoc
+# Without this, you'll get errors about missing charsets and maps
+echo "charset_path=/app/share/catdoc" >> $BUILD_DIR/.catdocrc
+echo "map_path=/app/share/catdoc" >> $BUILD_DIR/.catdocrc
+
 echo "-----> catdoc installed"
