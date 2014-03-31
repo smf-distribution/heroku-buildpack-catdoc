@@ -9,17 +9,18 @@ VENDOR_URL="http://ftp.wagner.pp.ru/pub/catdoc/"
 
 # catdoc
 VERSION="0.94.2"
-FILE_NAME="catdoc-${VERSION}.tar.gz"
-BUILDPACK_PACKAGE="${VENDOR_URL}/${FILE_NAME}"
+FILE_NAME="catdoc-${VERSION}"
+ARCHIVE_NAME="${FILE_NAME}.tar.gz"
+BUILDPACK_PACKAGE="${VENDOR_URL}/${ARCHIVE_NAME}"
 
 mkdir -p $CACHE_DIR
 if ! [ -e $CACHE_DIR/$FILE_NAME ]; then
   echo "-----> Fetching catdoc source"
-  curl $BUILDPACK_PACKAGE -s -o $CACHE_DIR/$FILE_NAME
+  curl $BUILDPACK_PACKAGE -s -o $CACHE_DIR/$ARCHIVE_NAME
 fi
 
 echo "-----> Extracting catdoc source"
-tar zxf $CACHE_DIR/$FILE_NAME
+tar zxf $CACHE_DIR/$ARCHIVE_NAME
 
 echo "-----> Compiling catdoc"
 cd $FILE_NAME
